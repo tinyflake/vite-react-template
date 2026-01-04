@@ -32,10 +32,13 @@ Get started in minutes with local development or deploy directly via the Cloudfl
 
 ## Framework Support
 
-This project supports both React and Vue frameworks. Switch between them by editing the `.env` file:
+This project supports both React and Vue frameworks. Switch between them by creating a `.env` file:
 
 ```bash
-# .env file
+# Copy the example file
+cp .env.example .env
+
+# Edit .env file
 FRAMEWORK=react  # or vue
 ```
 
@@ -43,6 +46,8 @@ Then run:
 ```bash
 yarn dev
 ```
+
+**Note**: If no `.env` file is present, the project defaults to React framework.
 
 ## Project Structure
 
