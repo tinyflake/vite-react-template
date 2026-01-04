@@ -1,16 +1,16 @@
-# React + Vite + Hono + Cloudflare Workers
+# React/Vue + Vite + Hono + Cloudflare Workers
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
 
-This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
+This template provides a minimal setup for building React or Vue applications with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
 
-![React + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
+![React/Vue + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
 
 <!-- dash-content-start -->
 
 🚀 Supercharge your web development with this powerful stack:
 
-- [**React**](https://react.dev/) - A modern UI library for building interactive interfaces
+- [**React**](https://react.dev/) / [**Vue**](https://vuejs.org/) - Modern UI libraries for building interactive interfaces
 - [**Vite**](https://vite.dev/) - Lightning-fast build tooling and development server
 - [**Hono**](https://hono.dev/) - Ultralight, modern backend framework
 - [**Cloudflare Workers**](https://developers.cloudflare.com/workers/) - Edge computing platform for global deployment
@@ -24,10 +24,41 @@ This template provides a minimal setup for building a React application with Typ
 - 🎯 API routes with Hono's elegant routing
 - 🔄 Full-stack development setup
 - 🔎 Built-in Observability to monitor your Worker
+- 🔀 **Dual Framework Support** - Switch between React and Vue easily
 
 Get started in minutes with local development or deploy directly via the Cloudflare dashboard. Perfect for building modern, performant web applications at the edge.
 
 <!-- dash-content-end -->
+
+## Framework Support
+
+This project supports both React and Vue frameworks. Switch between them by editing the `.env` file:
+
+```bash
+# .env file
+FRAMEWORK=react  # or vue
+```
+
+Then run:
+```bash
+yarn dev
+```
+
+## Project Structure
+
+```
+src/
+├── react-app/          # React application files
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── assets/
+├── vue-app/            # Vue application files
+│   ├── App.vue
+│   ├── main.ts
+│   └── assets/
+└── worker/             # Cloudflare Worker files
+    └── index.ts
+```
 
 ## Getting Started
 
@@ -45,35 +76,37 @@ A live deployment of this template is available at:
 Install dependencies:
 
 ```bash
-npm install
+yarn install
 ```
 
-Start the development server with:
+Choose your framework and start development:
 
 ```bash
-npm run dev
+# Edit .env file to set FRAMEWORK=react or FRAMEWORK=vue
+yarn dev
 ```
 
 Your application will be available at [http://localhost:5173](http://localhost:5173).
 
-## Production
-
-Build your project for production:
+## Building
 
 ```bash
-npm run build
+# Build current framework (set in .env)
+yarn build
 ```
+
+## Production
 
 Preview your build locally:
 
 ```bash
-npm run preview
+yarn preview
 ```
 
 Deploy your project to Cloudflare Workers:
 
 ```bash
-npm run build && npm run deploy
+yarn build && yarn deploy
 ```
 
 Monitor your workers:
