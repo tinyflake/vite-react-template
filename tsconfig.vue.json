@@ -1,0 +1,18 @@
+{
+	"extends": "./tsconfig.app.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": [
+		"src/vue-app/**/*",
+		"src/main.ts",
+		"vue-shims.d.ts"
+	],
+	"exclude": [
+		"src/react-app/**/*",
+		"src/worker/**/*"
+	]
+}
