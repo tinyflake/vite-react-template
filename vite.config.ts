@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
 			cloudflare()
 		],
 		define: {
-			__FRAMEWORK__: JSON.stringify(framework)
+			__FRAMEWORK__: framework
 		}
 	};
 });
