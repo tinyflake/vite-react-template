@@ -68,291 +68,174 @@ const handleClick = (event: MouseEvent) => {
 .btn {
   @include button-base;
   position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0.3px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-md;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
   cursor: pointer;
   user-select: none;
+  transition: all $transition-normal;
   
-  // 基础光效
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg, 
-      transparent, 
-      rgba(255, 255, 255, 0.4), 
-      transparent
-    );
-    transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 1;
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
   
-  // 悬浮光效
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.3) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: 0;
-  }
-  
-  &:hover {
-    &::before {
-      left: 100%;
-    }
-    
-    &::after {
-      width: 120%;
-      height: 120%;
-    }
-  }
-  
-  // Primary - 梦幻粉紫渐变
+  // Primary - 主要按钮
   &--primary {
-    background: linear-gradient(
-      135deg,
-      #ff6b9d 0%,
-      #c44569 25%,
-      #f8b500 50%,
-      #ff6b9d 75%,
-      #c44569 100%
-    );
-    background-size: 200% 200%;
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-warm-white);
     border: none;
-    box-shadow: 
-      0 4px 15px rgba(255, 107, 157, 0.3),
-      0 2px 8px rgba(196, 69, 105, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-sm);
     
     &:hover:not(.btn--disabled) {
-      transform: translateY(-3px) scale(1.02);
-      background-position: 100% 100%;
-      box-shadow: 
-        0 8px 25px rgba(255, 107, 157, 0.4),
-        0 4px 15px rgba(196, 69, 105, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-      animation: shimmer 2s ease-in-out infinite;
+      background: var(--color-primary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
     }
     
     &:active {
-      transform: translateY(-1px) scale(1.01);
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
     }
   }
   
-  // Secondary - 清新蓝绿渐变
+  // Secondary - 次要按钮
   &--secondary {
-    background: linear-gradient(
-      135deg,
-      #4facfe 0%,
-      #00f2fe 50%,
-      #4facfe 100%
-    );
-    background-size: 200% 200%;
-    color: white;
-    border: none;
-    box-shadow: 
-      0 4px 15px rgba(79, 172, 254, 0.3),
-      0 2px 8px rgba(0, 242, 254, 0.2);
-    
-    &:hover:not(.btn--disabled) {
-      transform: translateY(-3px) scale(1.02);
-      background-position: 100% 100%;
-      box-shadow: 
-        0 8px 25px rgba(79, 172, 254, 0.4),
-        0 4px 15px rgba(0, 242, 254, 0.3);
-    }
-  }
-  
-  // Outline - 玻璃态边框
-  &--outline {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     color: var(--color-primary);
-    border: 2px solid;
-    border-image: linear-gradient(135deg, #ff6b9d, #4facfe, #00f2fe) 1;
-    backdrop-filter: blur(20px);
-    position: relative;
-    
-    &::before {
-      background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(255, 107, 157, 0.2), 
-        transparent
-      );
-    }
+    border: 1.5px solid var(--color-accent);
     
     &:hover:not(.btn--disabled) {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 
-        0 8px 25px rgba(255, 107, 157, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
+      background: var(--color-soft-pink);
+      border-color: var(--color-primary);
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      background: var(--color-light-gray);
     }
   }
   
-  // Ghost - 极简透明
-  &--ghost {
-    background: rgba(255, 255, 255, 0.05);
+  // Outline - 边框按钮
+  &--outline {
+    background: var(--color-surface);
     color: var(--color-text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
     
     &:hover:not(.btn--disabled) {
-      background: rgba(255, 255, 255, 0.15);
+      background: var(--color-light-gray);
       color: var(--color-primary);
+      border-color: var(--color-medium-gray);
       transform: translateY(-1px);
-      border-color: rgba(255, 107, 157, 0.3);
+    }
+  }
+  
+  // Ghost - 幽灵按钮
+  &--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: none;
+    
+    &:hover:not(.btn--disabled) {
+      background: var(--color-light-gray);
+      color: var(--color-primary);
     }
   }
   
   // 尺寸变体
   &--sm {
-    padding: 8px 20px;
-    font-size: 13px;
+    padding: 8px 16px;
+    font-size: $font-size-sm;
     min-height: 36px;
-    border-radius: 12px;
+    border-radius: $border-radius-sm;
   }
   
   &--md {
-    padding: 12px 28px;
-    font-size: 14px;
+    padding: 12px 24px;
+    font-size: $font-size-base;
     min-height: 44px;
-    border-radius: 14px;
+    border-radius: $border-radius-md;
   }
   
   &--lg {
-    padding: 16px 36px;
-    font-size: 16px;
+    padding: 16px 32px;
+    font-size: $font-size-lg;
     min-height: 52px;
-    border-radius: 18px;
+    border-radius: $border-radius-lg;
   }
   
+  // 状态
   &--disabled {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: not-allowed;
-    filter: grayscale(0.5);
     
     &:hover {
       transform: none;
-      background-position: 0% 0%;
     }
   }
   
   &--loading {
     cursor: wait;
+    position: relative;
     
     &::after {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 18px;
-      height: 18px;
-      margin: -9px 0 0 -9px;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
       border: 2px solid transparent;
       border-top-color: currentColor;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      z-index: 2;
     }
   }
 }
 
-// 动画效果
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-@keyframes shimmer {
-  0%, 100% { 
-    background-position: 0% 50%; 
-  }
-  50% { 
-    background-position: 100% 50%; 
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 
-      0 4px 15px rgba(255, 107, 157, 0.3),
-      0 0 20px rgba(255, 107, 157, 0.1);
-  }
-  50% {
-    box-shadow: 
-      0 8px 25px rgba(255, 107, 157, 0.5),
-      0 0 30px rgba(255, 107, 157, 0.3);
-  }
-}
-
 // 特殊效果类
-.btn-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+.btn-soft {
+  box-shadow: none;
   
-  &:hover {
-    animation: none;
-  }
-}
-
-.btn-kawaii {
-  position: relative;
-  
-  &::before {
-    content: '✨';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    font-size: 14px;
-    opacity: 0;
-    transform: rotate(0deg) scale(0.8);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 3;
-  }
-  
-  &:hover::before {
-    opacity: 1;
-    transform: rotate(15deg) scale(1);
+  &.btn--primary {
+    background: var(--color-soft-pink);
+    color: var(--color-primary);
+    
+    &:hover {
+      background: var(--color-accent);
+    }
   }
 }
 
 // 响应式调整
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-mobile) {
   .btn {
     &--sm {
-      padding: 6px 16px;
-      font-size: 12px;
+      padding: 6px 12px;
+      font-size: $font-size-xs;
       min-height: 32px;
     }
     
     &--md {
-      padding: 10px 24px;
-      font-size: 13px;
+      padding: 10px 20px;
+      font-size: $font-size-sm;
       min-height: 40px;
     }
     
     &--lg {
-      padding: 14px 32px;
-      font-size: 15px;
+      padding: 14px 28px;
+      font-size: $font-size-base;
       min-height: 48px;
     }
   }

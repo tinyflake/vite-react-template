@@ -12,16 +12,17 @@
 html {
   font-family: $font-family-sans;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: $line-height-relaxed;
   color: var(--color-text-primary);
   background: var(--color-background);
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-weight: $font-weight-normal;
 }
 
 // 链接样式
@@ -32,6 +33,12 @@ a {
   
   &:hover {
     color: var(--color-primary-dark);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 

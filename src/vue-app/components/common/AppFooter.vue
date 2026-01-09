@@ -23,12 +23,12 @@
         <div class="footer-section">
           <h4 class="footer-section__title">联系方式</h4>
           <div class="footer-contact">
-            <a href="mailto:hello@example.com" class="footer-contact__item">
+            <a href="mailto:huan@tinyflake.top" class="footer-contact__item">
               <svg viewBox="0 0 24 24" fill="currentColor" class="footer-contact__icon">
                 <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
               </svg>
-              hello@example.com
+              huan@tinyflake.top
             </a>
             <span class="footer-contact__item">
               <svg viewBox="0 0 24 24" fill="currentColor" class="footer-contact__icon">
@@ -39,7 +39,7 @@
           </div>
         </div>
         
-        <div class="footer-section">
+        <!-- <div class="footer-section">
           <h4 class="footer-section__title">关注我</h4>
           <div class="footer-social">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social__link">
@@ -58,14 +58,14 @@
               </svg>
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
       
       <div class="footer-bottom">
         <div class="footer-bottom__content">
           <p>&copy; {{ currentYear }} 个人网站. 保留所有权利。</p>
           <p class="footer-bottom__tech">
-            使用 <span class="tech-highlight">Vue 3</span> + <span class="tech-highlight">TypeScript</span> 构建
+            <!-- 使用 <span class="tech-highlight">Vue 3</span> + <span class="tech-highlight">TypeScript</span> 构建 -->
           </p>
         </div>
       </div>

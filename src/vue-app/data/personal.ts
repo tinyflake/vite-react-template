@@ -1,7 +1,7 @@
 import type { PersonalInfo, ContactInfo, SocialLink } from '../types'
 
 export const personalInfo: PersonalInfo = {
-  name: '张三',
+  name: 'tinyflake',
   title: '全栈开发工程师',
   description: '专注于现代 Web 技术，热爱创造优雅的用户体验。拥有丰富的前端和后端开发经验，致力于构建高质量的数字产品。',
   avatar: '/images/avatar.jpg',
@@ -9,15 +9,15 @@ export const personalInfo: PersonalInfo = {
 }
 
 export const contactInfo: ContactInfo = {
-  email: 'hello@example.com',
-  phone: '+86 138 0000 0000',
-  location: '北京, 中国'
+  email: 'huan@tinyflake.top',
+  phone: '+86 189 8337 3149',
+  location: '武汉, 中国'
 }
 
 export const socialLinks: SocialLink[] = [
   {
     platform: 'GitHub',
-    url: 'https://github.com/username',
+    url: 'https://github.com/tinyflake',
     icon: 'github'
   },
   {
@@ -32,7 +32,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     platform: 'Email',
-    url: 'mailto:hello@example.com',
+    url: 'mailto:huan@tinyflake.top',
     icon: 'email'
   }
 ]

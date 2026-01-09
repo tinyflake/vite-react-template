@@ -1,10 +1,5 @@
 <template>
   <header class="app-header">
-    <!-- 装饰背景 -->
-    <div class="header-decorations">
-      <div class="decoration-particle" v-for="n in 8" :key="n" :style="getParticleStyle(n)"></div>
-    </div>
-    
     <div class="container">
       <nav class="nav">
         <router-link to="/" class="logo">
@@ -70,22 +65,6 @@ const handleResize = () => {
   }
 }
 
-// 生成粒子样式
-const getParticleStyle = (index: number) => {
-  const size = Math.random() * 3 + 1
-  const left = Math.random() * 100
-  const animationDelay = Math.random() * 5
-  const animationDuration = Math.random() * 10 + 5
-  
-  return {
-    width: `${size}px`,
-    height: `${size}px`,
-    left: `${left}%`,
-    animationDelay: `${animationDelay}s`,
-    animationDuration: `${animationDuration}s`
-  }
-}
-
 onMounted(() => {
   window.addEventListener('resize', handleResize)
 })
@@ -97,63 +76,18 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .app-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(254, 252, 250, 0.95);
   backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid rgba(255, 107, 157, 0.1);
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-secondary);
-    opacity: 0.1;
-    pointer-events: none;
-  }
-}
-
-// 装饰背景
-.header-decorations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.decoration-particle {
-  position: absolute;
-  background: var(--gradient-primary);
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: headerFloat infinite ease-in-out;
-}
-
-@keyframes headerFloat {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-10px) translateX(5px);
-    opacity: 0.6;
-  }
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav {
   @include flex-between;
   padding: $spacing-lg 0;
-  position: relative;
-  z-index: 2;
 }
 
 .logo {
@@ -161,60 +95,35 @@ onUnmounted(() => {
   align-items: center;
   gap: $spacing-sm;
   font-size: $font-size-xl;
-  font-weight: 700;
+  font-weight: $font-weight-semibold;
   color: var(--color-primary);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  transition: all $transition-normal;
   
   &:hover {
-    transform: scale(1.05);
-    
-    .logo__icon {
-      animation: bounce 0.6s ease;
-    }
-    
-    .logo__sparkle {
-      opacity: 1;
-      transform: scale(1.2);
-    }
+    color: var(--color-primary-dark);
+    transform: translateY(-1px);
   }
 }
 
 .logo__icon {
   font-size: $font-size-2xl;
-  animation: rotate 10s linear infinite;
 }
 
 .logo__text {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-text-primary);
+  font-weight: $font-weight-semibold;
 }
 
 .logo__sparkle {
   font-size: $font-size-sm;
-  opacity: 0.7;
-  transition: all 0.3s;
-  animation: twinkle 2s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-5px);
-  }
-  60% {
-    transform: translateY(-3px);
-  }
+  opacity: 0.6;
+  color: var(--color-primary);
 }
 
 .nav-links {
   display: flex;
-  gap: $spacing-lg;
+  gap: $spacing-md;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -224,18 +133,19 @@ onUnmounted(() => {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--color-surface);
     backdrop-filter: blur(20px);
     flex-direction: column;
     gap: 0;
-    box-shadow: var(--shadow-xl);
-    border-radius: 0 0 $border-radius-2xl $border-radius-2xl;
+    box-shadow: var(--shadow-lg);
+    border-radius: 0 0 $border-radius-xl $border-radius-xl;
     padding: $spacing-xl;
     transform: translateY(-20px);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 107, 157, 0.1);
+    transition: all $transition-normal;
+    border: 1px solid var(--color-border);
+    border-top: none;
     
     &--open {
       transform: translateY(0);
@@ -251,44 +161,23 @@ onUnmounted(() => {
   gap: $spacing-xs;
   color: var(--color-text-secondary);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: $font-weight-medium;
   font-size: $font-size-sm;
   padding: $spacing-sm $spacing-lg;
-  border-radius: $border-radius-xl;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  border-radius: $border-radius-lg;
+  transition: all $transition-normal;
   min-height: 44px;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    transition: left 0.3s;
-    z-index: -1;
-  }
   
   &:hover {
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    
-    &::before {
-      left: 0;
-    }
-    
-    .nav-icon {
-      animation: bounce 0.6s ease;
-    }
+    color: var(--color-primary);
+    background: var(--color-light-gray);
+    transform: translateY(-1px);
   }
   
   &.router-link-active {
     color: var(--color-primary);
-    background: rgba(255, 107, 157, 0.1);
+    background: var(--color-soft-pink);
+    font-weight: $font-weight-semibold;
     
     &::after {
       content: '';
@@ -297,62 +186,59 @@ onUnmounted(() => {
       left: 50%;
       transform: translateX(-50%);
       width: 20px;
-      height: 3px;
-      background: var(--gradient-primary);
-      border-radius: 2px;
+      height: 2px;
+      background: var(--color-primary);
+      border-radius: 1px;
       
       @include mobile {
         display: none;
       }
     }
-    
-    .nav-icon {
-      animation: pulse 2s infinite;
-    }
   }
   
   @include mobile {
     padding: $spacing-md $spacing-lg;
-    border-bottom: 1px solid rgba(255, 107, 157, 0.1);
-    border-radius: $border-radius-lg;
+    border-bottom: 1px solid var(--color-border-light);
+    border-radius: $border-radius-md;
     margin-bottom: $spacing-sm;
     
     &:last-child {
       border-bottom: none;
       margin-bottom: 0;
     }
+    
+    &:hover {
+      background: var(--color-light-gray);
+    }
   }
 }
 
 .nav-icon {
   font-size: $font-size-base;
-  transition: transform 0.3s;
 }
 
 .nav-text {
-  font-weight: 600;
+  font-weight: inherit;
 }
 
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(255, 107, 157, 0.2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   cursor: pointer;
   padding: $spacing-sm;
-  border-radius: $border-radius-lg;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: $border-radius-md;
+  transition: all $transition-normal;
   min-height: 44px;
   min-width: 44px;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(10px);
   
   &:hover {
-    background: rgba(255, 107, 157, 0.1);
+    background: var(--color-light-gray);
     border-color: var(--color-primary);
-    transform: scale(1.05);
   }
   
   @include mobile {
@@ -364,8 +250,8 @@ onUnmounted(() => {
   width: 20px;
   height: 2px;
   background: var(--color-primary);
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+  transition: all $transition-normal;
   
   .mobile-menu-toggle[aria-expanded="true"] & {
     &:nth-child(1) {
@@ -383,11 +269,11 @@ onUnmounted(() => {
   }
 }
 
-// 防止移动端菜单打开时页面滚动
+// 移动端菜单定位
 .nav-links--open {
   @include mobile {
     position: fixed;
-    top: 73px; // header height
+    top: 73px;
     left: $spacing-lg;
     right: $spacing-lg;
     z-index: 1000;

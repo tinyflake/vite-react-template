@@ -1,85 +1,69 @@
 <template>
-  <Card 
-    :variant="variant === 'featured' ? 'elevated' : 'default'"
-    :hoverable="true"
-    :clickable="true"
-    @click="handleCardClick"
+  <article 
     class="project-card"
     :class="{ 'project-card--featured': variant === 'featured' }"
+    @click="handleCardClick"
   >
-    <!-- 装饰星星 -->
-    <div class="project-card__decorations">
-      <div class="decoration-star decoration-star--1">✦</div>
-      <div class="decoration-star decoration-star--2">✧</div>
-      <div class="decoration-heart">♡</div>
-    </div>
-    
-    <div class="project-card__image">
+    <!-- 项目图片 -->
+    <div class="project-card__image-container">
       <img 
         :src="project.image" 
         :alt="`${project.title}项目截图`"
+        class="project-card__image"
         @error="handleImageError"
       />
-      <div class="project-card__overlay">
-        <div class="project-card__links">
-          <Button 
-            v-if="project.demoUrl"
-            variant="primary" 
-            size="sm"
-            class="btn-glow"
-            :href="project.demoUrl"
-            target="_blank"
-            @click.stop
-          >
-            <span class="btn-icon">🚀</span>
-            在线演示
-          </Button>
-          <Button 
-            v-if="project.githubUrl"
-            variant="outline" 
-            size="sm"
-            class="btn-kawaii"
-            :href="project.githubUrl"
-            target="_blank"
-            @click.stop
-          >
-            <span class="btn-icon">💻</span>
-            查看代码
-          </Button>
-        </div>
-      </div>
-      
       <!-- 特色标签 -->
-      <div v-if="variant === 'featured'" class="project-card__featured-badge">
-        <span class="badge-icon">⭐</span>
-        精选
+      <div v-if="variant === 'featured'" class="project-card__badge">
+        精选项目
       </div>
     </div>
     
+    <!-- 项目信息 -->
     <div class="project-card__content">
-      <h3 class="project-card__title">
-        <span class="title-text">{{ project.title }}</span>
-        <span class="title-decoration">✨</span>
-      </h3>
+      <h3 class="project-card__title">{{ project.title }}</h3>
       <p class="project-card__description">{{ project.description }}</p>
       
-      <div class="project-card__technologies">
+      <!-- 技术栈 -->
+      <div class="project-card__tech-stack">
         <span 
-          v-for="(tech, index) in project.technologies" 
+          v-for="tech in project.technologies.slice(0, 3)" 
           :key="tech"
-          class="project-card__tech-tag"
-          :style="{ animationDelay: `${index * 0.1}s` }"
+          class="tech-tag"
         >
           {{ tech }}
         </span>
+        <span v-if="project.technologies.length > 3" class="tech-more">
+          +{{ project.technologies.length - 3 }}
+        </span>
+      </div>
+      
+      <!-- 操作按钮 -->
+      <div class="project-card__actions">
+        <a 
+          v-if="project.demoUrl"
+          :href="project.demoUrl"
+          target="_blank"
+          class="action-btn action-btn--primary"
+          @click.stop
+        >
+          查看
+        </a>
+        <a 
+          v-if="project.githubUrl"
+          :href="project.githubUrl"
+          target="_blank"
+          class="action-btn action-btn--secondary"
+          @click.stop
+        >
+          代码
+        </a>
       </div>
     </div>
-  </Card>
+  </article>
 </template>
 
 <script setup lang="ts">
 import type { Project } from '../../types'
-import { Card, Button } from '../ui'
 
 interface Props {
   project: Project
@@ -106,282 +90,208 @@ const handleImageError = (event: Event) => {
 
 <style scoped lang="scss">
 .project-card {
-  overflow: visible;
-  position: relative;
-  
-  &--featured {
-    &::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: var(--gradient-primary);
-      border-radius: $border-radius-2xl;
-      z-index: -1;
-      opacity: 0.3;
-      animation: glow 3s ease-in-out infinite alternate;
-    }
-  }
+  background: var(--color-surface);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 115, 85, 0.08);
   
   &:hover {
-    .project-card__overlay {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(139, 115, 85, 0.16);
+    border-color: var(--color-primary);
+    
+    .project-card__image {
+      transform: scale(1.02);
+    }
+    
+    .action-btn {
       opacity: 1;
+      transform: translateY(0);
     }
-    
-    .project-card__image img {
-      transform: scale(1.1);
-    }
-    
-    .project-card__decorations {
-      .decoration-star,
-      .decoration-heart {
-        opacity: 1;
-        transform: scale(1.2);
-      }
-    }
-    
-    .project-card__tech-tag {
-      transform: translateY(-2px);
-    }
-  }
-}
-
-@keyframes glow {
-  from {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0.6;
-    transform: scale(1.02);
-  }
-}
-
-// 装饰元素
-.project-card__decorations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.decoration-star,
-.decoration-heart {
-  position: absolute;
-  font-size: 1rem;
-  opacity: 0;
-  transition: all 0.3s ease;
-  color: var(--color-neon-pink);
-  
-  &--1 {
-    top: 10px;
-    right: 15px;
-    animation: twinkle 2s infinite ease-in-out;
   }
   
-  &--2 {
-    top: 20px;
-    left: 15px;
-    animation: twinkle 2s infinite ease-in-out 0.5s;
+  &--featured {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 16px rgba(139, 115, 85, 0.12);
   }
 }
 
-.decoration-heart {
-  bottom: 15px;
-  right: 15px;
-  animation: pulse 2s infinite ease-in-out 1s;
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+.project-card__image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: var(--color-light-gray);
 }
 
 .project-card__image {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-  border-radius: $border-radius-xl $border-radius-xl 0 0;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-.project-card__overlay {
+.project-card__badge {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(156, 39, 176, 0.9));
-  @include flex-center;
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(5px);
-}
-
-.project-card__links {
-  display: flex;
-  gap: $spacing-md;
-  flex-direction: column;
-  
-  @include tablet-up {
-    flex-direction: row;
-  }
-}
-
-.project-card__featured-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: var(--gradient-primary);
-  color: white;
-  padding: $spacing-xs $spacing-sm;
-  border-radius: $border-radius-xl;
-  font-size: $font-size-xs;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: $spacing-xs;
-  box-shadow: var(--shadow-md);
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-5px);
-  }
-  60% {
-    transform: translateY(-3px);
-  }
-}
-
-.badge-icon {
-  animation: rotate 3s linear infinite;
+  top: 12px;
+  right: 12px;
+  background: var(--color-primary);
+  color: var(--color-warm-white);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(139, 115, 85, 0.2);
 }
 
 .project-card__content {
-  padding: $spacing-xl;
+  padding: 24px;
 }
 
 .project-card__title {
-  @include text-heading-3;
-  margin-bottom: $spacing-md;
-  font-size: $font-size-xl;
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  
-  .title-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .title-decoration {
-    font-size: $font-size-sm;
-    animation: sparkle 2s infinite ease-in-out;
-  }
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .project-card__description {
-  @include text-body;
-  margin-bottom: $spacing-lg;
-  @include text-truncate-lines(3);
-  line-height: 1.6;
+  font-size: 14px;
   color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.project-card__technologies {
+.project-card__tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-sm;
+  gap: 6px;
+  margin-bottom: 20px;
 }
 
-.project-card__tech-tag {
+.tech-tag {
   display: inline-block;
-  padding: $spacing-xs $spacing-md;
-  background: var(--gradient-accent);
-  color: white;
-  border-radius: $border-radius-xl;
-  font-size: $font-size-xs;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-  }
+  padding: 4px 10px;
+  background: var(--color-light-gray);
+  color: var(--color-text-secondary);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--color-border-light);
+  transition: all 0.2s ease;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background: var(--color-soft-pink);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  
+  &:nth-child(2) {
+    background: var(--color-soft-blue);
+  }
+  
+  &:nth-child(3) {
+    background: var(--color-soft-green);
+  }
+}
+
+.tech-more {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--color-medium-gray);
+  color: var(--color-warm-white);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.project-card__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  transform: translateY(4px);
+  
+  &--primary {
+    background: var(--color-primary);
+    color: var(--color-warm-white);
     
-    &::before {
-      left: 100%;
+    &:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
     }
   }
   
-  &:nth-child(even) {
-    background: var(--gradient-primary);
+  &--secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    
+    &:hover {
+      background: var(--color-primary);
+      color: var(--color-warm-white);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
+    }
   }
 }
 
-.btn-icon {
-  margin-right: $spacing-xs;
-}
-
-// 响应式调整
-@include mobile {
-  .project-card__image {
-    height: 180px;
+// 响应式设计
+@media (max-width: 768px) {
+  .project-card__image-container {
+    height: 160px;
   }
   
   .project-card__content {
-    padding: $spacing-lg;
+    padding: 20px;
   }
   
   .project-card__title {
-    font-size: $font-size-lg;
+    font-size: 18px;
+  }
+  
+  .project-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .action-btn {
+    padding: 12px 16px;
+  }
+}
+
+// 加载状态
+.project-card__image[src=""] {
+  background: var(--color-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &::before {
+    content: '📷';
+    font-size: 32px;
+    opacity: 0.5;
   }
 }
 </style>

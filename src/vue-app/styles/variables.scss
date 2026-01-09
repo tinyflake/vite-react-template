@@ -1,53 +1,45 @@
-// 颜色变量 - 二次元主题
+// 颜色变量 - 极简日系主题
 :root {
-  // 主色调 - 樱花粉和天空蓝
-  --color-primary: #ff6b9d;
-  --color-primary-dark: #e91e63;
-  --color-primary-light: #ffb3d1;
+  // 主色调 - 温暖中性色
+  --color-primary: #8B7355;
+  --color-primary-dark: #7A6449;
+  --color-primary-light: #A8998B;
   
-  // 次要色调 - 紫色系
-  --color-secondary: #9c27b0;
-  --color-accent: #00bcd4;
+  // 次要色调
+  --color-secondary: #A8998B;
+  --color-accent: #D4C4B0;
   
-  // 渐变色
-  --gradient-primary: linear-gradient(135deg, #ff6b9d 0%, #9c27b0 50%, #00bcd4 100%);
-  --gradient-secondary: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-  --gradient-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  // 辅助色彩 - 极淡的彩色点缀
+  --color-soft-pink: #F5F0F0;
+  --color-soft-blue: #F0F4F8;
+  --color-soft-green: #F2F5F0;
   
-  // 中性色
-  --color-gray-50: #fafafa;
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #eeeeee;
-  --color-gray-300: #e0e0e0;
-  --color-gray-400: #bdbdbd;
-  --color-gray-500: #9e9e9e;
-  --color-gray-600: #757575;
-  --color-gray-700: #616161;
-  --color-gray-800: #424242;
-  --color-gray-900: #212121;
+  // 中性色 - 温暖灰度
+  --color-warm-white: #FEFCFA;
+  --color-paper: #FAF8F5;
+  --color-light-gray: #F0EDE8;
+  --color-medium-gray: #C8C0B8;
+  --color-dark-gray: #6B6158;
+  --color-charcoal: #3D3832;
   
   // 背景色
-  --color-background: #ffffff;
-  --color-background-secondary: #fafafa;
-  --color-surface: #ffffff;
+  --color-background: #FAF8F5;
+  --color-background-secondary: #F0EDE8;
+  --color-surface: #FEFCFA;
   
   // 文本色
-  --color-text-primary: #212121;
-  --color-text-secondary: #757575;
-  --color-text-muted: #bdbdbd;
-  
-  // 特殊效果色
-  --color-neon-pink: #ff0080;
-  --color-neon-blue: #00ffff;
-  --color-neon-purple: #8000ff;
+  --color-text-primary: #3D3832;
+  --color-text-secondary: #6B6158;
+  --color-text-muted: #C8C0B8;
   
   // 边框和阴影
-  --color-border: #e0e0e0;
-  --shadow-sm: 0 2px 4px rgba(255, 107, 157, 0.1);
-  --shadow-md: 0 4px 12px rgba(255, 107, 157, 0.15);
-  --shadow-lg: 0 8px 24px rgba(255, 107, 157, 0.2);
-  --shadow-xl: 0 12px 32px rgba(255, 107, 157, 0.25);
-  --shadow-neon: 0 0 20px rgba(255, 0, 128, 0.5);
+  --color-border: #F0EDE8;
+  --color-border-light: #F5F2EE;
+  --shadow-sm: 0 2px 8px rgba(107, 97, 88, 0.06);
+  --shadow-md: 0 2px 8px rgba(107, 97, 88, 0.08);
+  --shadow-lg: 0 4px 16px rgba(107, 97, 88, 0.12);
+  --shadow-xl: 0 8px 32px rgba(107, 97, 88, 0.16);
+  --shadow-hover: 0 4px 16px rgba(107, 97, 88, 0.1);
 }
 
 // 响应式断点
@@ -64,26 +56,39 @@ $spacing-xl: 2rem;      // 32px
 $spacing-2xl: 3rem;     // 48px
 $spacing-3xl: 4rem;     // 64px
 
-// 字体系统
-$font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+// 字体系统 - 日系风格
+$font-family-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+
 $font-size-xs: 0.75rem;    // 12px
 $font-size-sm: 0.875rem;   // 14px
 $font-size-base: 1rem;     // 16px
 $font-size-lg: 1.125rem;   // 18px
 $font-size-xl: 1.25rem;    // 20px
 $font-size-2xl: 1.5rem;    // 24px
-$font-size-3xl: 1.875rem;  // 30px
-$font-size-4xl: 2.25rem;   // 36px
+$font-size-3xl: 2rem;      // 32px
+$font-size-4xl: 2.5rem;    // 40px
 $font-size-5xl: 3rem;      // 48px
 
-// 圆角
+// 字重
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+// 行高
+$line-height-tight: 1.2;
+$line-height-normal: 1.4;
+$line-height-relaxed: 1.6;
+
+// 圆角 - 柔和设计
 $border-radius-sm: 0.25rem;  // 4px
 $border-radius-md: 0.375rem; // 6px
 $border-radius-lg: 0.5rem;   // 8px
 $border-radius-xl: 0.75rem;  // 12px
 $border-radius-2xl: 1rem;    // 16px
 
-// 过渡动画
-$transition-fast: 150ms ease-in-out;
-$transition-normal: 300ms ease-in-out;
-$transition-slow: 500ms ease-in-out;
+// 过渡动画 - 自然缓动
+$transition-fast: 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-normal: 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-slow: 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
