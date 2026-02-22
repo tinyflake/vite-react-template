@@ -14,7 +14,7 @@
 	},
     "routes": [
     {
-      "pattern": "tinyflake.top",
+      "pattern": "tinyflake.cn",
       "custom_domain": true
     }
   ]

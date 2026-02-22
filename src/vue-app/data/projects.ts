@@ -9,7 +9,7 @@ export const projects: Project[] = [
 		description: "Mars3D API 文档查看器，提供更友好的阅读体验",
 		image: MainPng,
 		technologies: ["Vue3", "Mars3D API 文档"],
-		demoUrl: "http://mars3dapi.tinyflake.top/",
+		demoUrl: "http://mars3dapi.tinyflake.cn/",
 		githubUrl: "",
 		featured: true,
 	},
@@ -20,7 +20,7 @@ export const projects: Project[] = [
 			"基于 Node.js + Vue3 的现代化 Git 仓库管理系统，提供完整的仓库管理、代码查看和权限控制功能。支持一键配置部署，3 步完成上线。",
 		image: GitServer,
 		technologies: ["Node.js", "Vue3", "Git"],
-		demoUrl: "http://git.tinyflake.top/",
+		demoUrl: "http://git.tinyflake.cn/",
 		githubUrl: "",
 		featured: true,
 	},
@@ -84,7 +84,7 @@ export const getFeaturedProjects = (): Project[] => {
 export const getProjectsByTechnology = (tech: string): Project[] => {
 	return projects.filter((project) =>
 		project.technologies.some((t) =>
-			t.toLowerCase().includes(tech.toLowerCase()),
-		),
+			t.toLowerCase().includes(tech.toLowerCase())
+		)
 	)
 }

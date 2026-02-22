@@ -1,45 +1,68 @@
 <template>
-  <footer class="app-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4 class="footer-section__title">个人网站</h4>
-          <p class="footer-section__description">
-            展示我的专业技能和项目作品，欢迎与我联系交流。
-          </p>
-        </div>
-        
-        <div class="footer-section">
-          <h4 class="footer-section__title">快速链接</h4>
-          <ul class="footer-links">
-            <li><router-link to="/">首页</router-link></li>
-            <li><router-link to="/about">关于我</router-link></li>
-            <li><router-link to="/projects">项目作品</router-link></li>
-            <li><router-link to="/skills">技能专长</router-link></li>
-            <li><router-link to="/contact">联系我</router-link></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h4 class="footer-section__title">联系方式</h4>
-          <div class="footer-contact">
-            <a href="mailto:huan@tinyflake.top" class="footer-contact__item">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="footer-contact__icon">
-                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
-                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
-              </svg>
-              huan@tinyflake.top
-            </a>
-            <span class="footer-contact__item">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="footer-contact__icon">
-                <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-              </svg>
-              北京, 中国
-            </span>
-          </div>
-        </div>
-        
-        <!-- <div class="footer-section">
+	<footer class="app-footer">
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-section">
+					<h4 class="footer-section__title">个人网站</h4>
+					<p class="footer-section__description">
+						展示我的专业技能和项目作品，欢迎与我联系交流。
+					</p>
+				</div>
+
+				<div class="footer-section">
+					<h4 class="footer-section__title">快速链接</h4>
+					<ul class="footer-links">
+						<li><router-link to="/">首页</router-link></li>
+						<li><router-link to="/about">关于我</router-link></li>
+						<li>
+							<router-link to="/projects">项目作品</router-link>
+						</li>
+						<li>
+							<router-link to="/skills">技能专长</router-link>
+						</li>
+						<li><router-link to="/contact">联系我</router-link></li>
+					</ul>
+				</div>
+
+				<div class="footer-section">
+					<h4 class="footer-section__title">联系方式</h4>
+					<div class="footer-contact">
+						<a
+							href="mailto:huan@tinyflake.cn"
+							class="footer-contact__item"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								class="footer-contact__icon"
+							>
+								<path
+									d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+								/>
+								<path
+									d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+								/>
+							</svg>
+							huan@tinyflake.cn
+						</a>
+						<span class="footer-contact__item">
+							<svg
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								class="footer-contact__icon"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							北京, 中国
+						</span>
+					</div>
+				</div>
+
+				<!-- <div class="footer-section">
           <h4 class="footer-section__title">关注我</h4>
           <div class="footer-social">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social__link">
@@ -59,174 +82,174 @@
             </a>
           </div>
         </div> -->
-      </div>
-      
-      <div class="footer-bottom">
-        <div class="footer-bottom__content">
-          <p>&copy; {{ currentYear }} 个人网站. 保留所有权利。</p>
-          <p class="footer-bottom__tech">
-            <!-- 使用 <span class="tech-highlight">Vue 3</span> + <span class="tech-highlight">TypeScript</span> 构建 -->
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
+			</div>
+
+			<div class="footer-bottom">
+				<div class="footer-bottom__content">
+					<p>&copy; {{ currentYear }} 个人网站. 保留所有权利。</p>
+					<p class="footer-bottom__tech">
+						<!-- 使用 <span class="tech-highlight">Vue 3</span> + <span class="tech-highlight">TypeScript</span> 构建 -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue"
 
 const currentYear = computed(() => new Date().getFullYear())
 </script>
 
 <style scoped lang="scss">
 .app-footer {
-  background: var(--color-gray-900);
-  color: var(--color-gray-300);
-  margin-top: auto;
+	background: var(--color-gray-900);
+	color: var(--color-gray-300);
+	margin-top: auto;
 }
 
 .footer-content {
-  @include grid(1, $spacing-2xl);
-  padding: $spacing-3xl 0 $spacing-2xl;
-  
-  @include tablet-up {
-    @include grid(2, $spacing-2xl);
-  }
-  
-  @include desktop {
-    @include grid(4, $spacing-2xl);
-  }
+	@include grid(1, $spacing-2xl);
+	padding: $spacing-3xl 0 $spacing-2xl;
+
+	@include tablet-up {
+		@include grid(2, $spacing-2xl);
+	}
+
+	@include desktop {
+		@include grid(4, $spacing-2xl);
+	}
 }
 
 .footer-section {
-  &__title {
-    color: var(--color-gray-100);
-    font-size: $font-size-lg;
-    font-weight: 600;
-    margin-bottom: $spacing-lg;
-  }
-  
-  &__description {
-    @include text-small;
-    color: var(--color-gray-400);
-    line-height: 1.6;
-  }
+	&__title {
+		color: var(--color-gray-100);
+		font-size: $font-size-lg;
+		font-weight: 600;
+		margin-bottom: $spacing-lg;
+	}
+
+	&__description {
+		@include text-small;
+		color: var(--color-gray-400);
+		line-height: 1.6;
+	}
 }
 
 .footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
-  
-  a {
-    color: var(--color-gray-400);
-    text-decoration: none;
-    font-size: $font-size-sm;
-    transition: color $transition-fast;
-    padding: $spacing-xs 0;
-    
-    &:hover {
-      color: var(--color-gray-100);
-    }
-  }
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-sm;
+
+	a {
+		color: var(--color-gray-400);
+		text-decoration: none;
+		font-size: $font-size-sm;
+		transition: color $transition-fast;
+		padding: $spacing-xs 0;
+
+		&:hover {
+			color: var(--color-gray-100);
+		}
+	}
 }
 
 .footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-sm;
+	display: flex;
+	flex-direction: column;
+	gap: $spacing-sm;
 }
 
 .footer-contact__item {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  color: var(--color-gray-400);
-  text-decoration: none;
-  font-size: $font-size-sm;
-  transition: color $transition-fast;
-  
-  &:hover {
-    color: var(--color-gray-100);
-  }
+	display: flex;
+	align-items: center;
+	gap: $spacing-sm;
+	color: var(--color-gray-400);
+	text-decoration: none;
+	font-size: $font-size-sm;
+	transition: color $transition-fast;
+
+	&:hover {
+		color: var(--color-gray-100);
+	}
 }
 
 .footer-contact__icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
 }
 
 .footer-social {
-  display: flex;
-  gap: $spacing-md;
+	display: flex;
+	gap: $spacing-md;
 }
 
 .footer-social__link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: var(--color-gray-800);
-  border-radius: $border-radius-md;
-  color: var(--color-gray-400);
-  transition: all $transition-fast;
-  
-  &:hover {
-    background: var(--color-primary);
-    color: white;
-    transform: translateY(-2px);
-  }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background: var(--color-gray-800);
+	border-radius: $border-radius-md;
+	color: var(--color-gray-400);
+	transition: all $transition-fast;
+
+	&:hover {
+		background: var(--color-primary);
+		color: white;
+		transform: translateY(-2px);
+	}
+
+	svg {
+		width: 20px;
+		height: 20px;
+	}
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--color-gray-800);
-  padding: $spacing-xl 0;
+	border-top: 1px solid var(--color-gray-800);
+	padding: $spacing-xl 0;
 }
 
 .footer-bottom__content {
-  @include flex-between;
-  flex-wrap: wrap;
-  gap: $spacing-md;
-  
-  @include mobile {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  p {
-    @include text-small;
-    color: var(--color-gray-500);
-    margin: 0;
-  }
+	@include flex-between;
+	flex-wrap: wrap;
+	gap: $spacing-md;
+
+	@include mobile {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	p {
+		@include text-small;
+		color: var(--color-gray-500);
+		margin: 0;
+	}
 }
 
 .footer-bottom__tech {
-  .tech-highlight {
-    color: var(--color-primary);
-    font-weight: 500;
-  }
+	.tech-highlight {
+		color: var(--color-primary);
+		font-weight: 500;
+	}
 }
 
 // 响应式调整
 @include mobile {
-  .footer-content {
-    @include grid(1, $spacing-xl);
-    padding: $spacing-2xl 0 $spacing-xl;
-  }
-  
-  .footer-social {
-    justify-content: center;
-  }
+	.footer-content {
+		@include grid(1, $spacing-xl);
+		padding: $spacing-2xl 0 $spacing-xl;
+	}
+
+	.footer-social {
+		justify-content: center;
+	}
 }
 </style>
